@@ -1,0 +1,1443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الرجلة | الإطلاق الرسمي — استديو يحيى بوغباش (yahiam7i studio)</title>
+
+    <!-- Google Fonts: Cairo & Tajawal للعربية + Bebas Neue للشعارات -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cairo:wght@400;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- إعدادات Tailwind المخصصة للألوان والخطوط والظلال -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                        tajawal: ['Tajawal', 'sans-serif'],
+                        bebas: ['Bebas Neue', 'sans-serif'],
+                    },
+                    colors: {
+                        obsidian: '#06040a',
+                        netflix: '#E50914',
+                        neonPurple: '#a855f7',
+                        neonMagenta: '#d946ef',
+                        royalGold: '#fbbf24',
+                    },
+                    boxShadow: {
+                        'neon-purple': '0 0 30px rgba(168, 85, 247, 0.35)',
+                        'neon-red': '0 0 28px rgba(229, 9, 20, 0.45)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.55)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- تنسيقات متقدمة للنوافذ الزجاجية، الظهور المتطور عند التمرير، والخلفية المائية -->
+    <style>
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background-color: #06040a;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* تأثير النافذة الزجاجية العصري (Glassmorphism) */
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+        }
+
+        .glass-card-hover {
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+                        border-color 0.35s ease,
+                        box-shadow 0.45s ease;
+        }
+        .glass-card-hover:hover {
+            transform: translateY(-8px) scale(1.015);
+            border-color: rgba(168, 85, 247, 0.55);
+            box-shadow: 0 20px 50px rgba(168, 85, 247, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        /* حركات الظهور المتطورة عند التمرير للأسفل (Blur + Scale + Slide) */
+        .reveal {
+            opacity: 0;
+            transform: translateY(55px) scale(0.94);
+            filter: blur(10px);
+            transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform, filter;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            filter: blur(0);
+        }
+
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-60px) scale(0.95);
+            filter: blur(8px);
+            transition: all 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-left.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            filter: blur(0);
+        }
+
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(60px) scale(0.95);
+            filter: blur(8px);
+            transition: all 0.95s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .reveal-right.active {
+            opacity: 1;
+            transform: translateX(0) scale(1);
+            filter: blur(0);
+        }
+
+        /* تدرج نص عنوان الفيلم (الرجلة) */
+        .title-gradient {
+            background: linear-gradient(180deg, #ffffff 0%, #e9d5ff 45%, #c084fc 80%, #9333ea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 28px rgba(168, 85, 247, 0.55));
+        }
+
+        /* توهج حيوي للخلفية */
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(25px, -30px) scale(1.08); }
+        }
+        .orb-animate {
+            animation: floatOrb 11s ease-in-out infinite;
+        }
+        .orb-animate-slow {
+            animation: floatOrb 15s ease-in-out infinite reverse;
+        }
+
+        /* تمييز العناصر القابلة للتعديل في وضع المنشئ */
+        .editable-active {
+            outline: 2px dashed rgba(168, 85, 247, 0.85);
+            outline-offset: 6px;
+            background: rgba(168, 85, 247, 0.08);
+            border-radius: 12px;
+            padding: 8px 12px;
+            cursor: text;
+        }
+
+        /* شريط التمرير المخصص */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #06040a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, #a855f7, #E50914);
+            border-radius: 999px;
+        }
+    </style>
+</head>
+<body class="relative min-h-screen selection:bg-purple-600 selection:text-white">
+
+    <!-- =========================================================
+         خلفية ثابتة: توهجات سينمائية + علامة مائية باهتة yahiam7i studio
+    ========================================================== -->
+    <div class="fixed inset-0 z-0 pointer-events-none overflow-hidden select-none" aria-hidden="true">
+        <!-- توهجات ضوئية بألوان البوستر (البنفسجي والأحمر السينمائي) -->
+        <div class="orb-animate absolute -top-32 -right-32 w-[28rem] h-[28rem] sm:w-[38rem] sm:h-[38rem] rounded-full bg-purple-700/20 blur-[130px]"></div>
+        <div class="orb-animate-slow absolute top-1/2 -left-40 w-[26rem] h-[26rem] sm:w-[36rem] sm:h-[36rem] rounded-full bg-fuchsia-700/15 blur-[140px]"></div>
+        <div class="orb-animate absolute -bottom-32 right-1/3 w-[24rem] h-[24rem] rounded-full bg-red-600/15 blur-[130px]"></div>
+
+        <!-- شبكة خطوط دقيقة تعطي عمقاً عصرياً -->
+        <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(255,255,255,0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.2) 1px, transparent 1px); background-size: 64px 64px;"></div>
+
+        <!-- العلامة المائية الباهتة في الخلفية: yahiam7i studio -->
+        <div class="absolute inset-0 flex flex-col justify-between items-center py-16 opacity-[0.032] -rotate-12 scale-125">
+            <div class="whitespace-nowrap font-bebas tracking-[0.35em] text-6xl sm:text-8xl md:text-9xl text-white">
+                YAHIAM7I STUDIO &nbsp;•&nbsp; YAHIAM7I STUDIO &nbsp;•&nbsp; YAHIAM7I STUDIO
+            </div>
+            <div class="whitespace-nowrap font-bebas tracking-[0.35em] text-6xl sm:text-8xl md:text-9xl text-purple-300">
+                YAHIAM7I STUDIO &nbsp;•&nbsp; استديو يحيى بوغباش &nbsp;•&nbsp; YAHIAM7I STUDIO
+            </div>
+            <div class="whitespace-nowrap font-bebas tracking-[0.35em] text-6xl sm:text-8xl md:text-9xl text-white">
+                YAHIAM7I STUDIO &nbsp;•&nbsp; YAHIAM7I STUDIO &nbsp;•&nbsp; YAHIAM7I STUDIO
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================
+         شريط التنقل العلوي الزجاجي (Floating Glass Navbar)
+    ========================================================== -->
+    <header class="fixed top-0 inset-x-0 z-50 px-3 sm:px-6 pt-3 sm:pt-4">
+        <nav class="max-w-7xl mx-auto glass-panel rounded-2xl px-4 sm:px-6 py-3 flex items-center justify-between gap-3">
+            <!-- شعار نتفليكس + استديو يحيى بوغباش -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <!-- أيقونة نتفليكس N المرسومة بـ SVG -->
+                <div class="flex items-center gap-1.5 bg-black/50 border border-red-600/40 rounded-xl px-2.5 py-1.5 shadow-neon-red">
+                    <svg class="w-5 h-6 text-netflix" viewBox="0 0 24 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 2H8.5L15.5 22.5V2H22V34H15.5L8.5 13.5V34H2V2Z" fill="#E50914"/>
+                        <path d="M2 2H8.5L15.5 34H9L2 2Z" fill="#FF1E2B" fill-opacity="0.7"/>
+                    </svg>
+                    <span class="font-bebas text-lg sm:text-xl tracking-widest text-netflix leading-none mt-0.5">NETFLIX</span>
+                </div>
+                <div class="h-6 w-px bg-white/15 hidden sm:block"></div>
+                <div class="flex flex-col">
+                    <span class="text-xs sm:text-sm font-extrabold text-white leading-tight group-hover:text-purple-300 transition">الرجلة</span>
+                    <span class="text-[10px] sm:text-xs font-medium text-purple-300/80 tracking-wider" dir="ltr">yahiam7i studio</span>
+                </div>
+            </a>
+
+            <!-- روابط الأقسام لسطح المكتب -->
+            <ul class="hidden lg:flex items-center gap-7 text-sm font-bold text-slate-200">
+                <li><a href="#hero" class="hover:text-purple-400 transition">الرئيسية</a></li>
+                <li><a href="#trailer" class="hover:text-purple-400 transition">الإعلان 🔥</a></li>
+                <li><a href="#story" class="hover:text-purple-400 transition">قصة العصابة</a></li>
+                <li><a href="#cast" class="hover:text-purple-400 transition">الشخصيات</a></li>
+                <li><a href="#preregister" class="hover:text-purple-400 transition">التسجيل المسبق</a></li>
+            </ul>
+
+            <!-- أزرار التحكم: وضع المنشئ + زر التسجيل السريع -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button id="creatorModeBtn" onclick="toggleCreatorMode()" class="px-3 py-2 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-purple-500/20 border border-white/15 hover:border-purple-400/60 text-purple-200 transition flex items-center gap-1.5" title="تعديل القصة والصور من طرف المنشئ">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
+                    </svg>
+                    <span id="creatorModeLabel" class="hidden sm:inline">وضع المنشئ</span>
+                </button>
+
+                <button onclick="openPreRegisterModal()" class="px-3.5 sm:px-5 py-2 rounded-xl text-xs sm:text-sm font-extrabold bg-gradient-to-l from-netflix via-rose-600 to-purple-600 hover:brightness-110 text-white shadow-neon-red transition active:scale-95 flex items-center gap-1.5">
+                    <span>سجّل مسبقاً</span>
+                    <span class="hidden sm:inline">⚡</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- شريط تنبيه يظهر فقط عند تفعيل وضع المنشئ -->
+        <div id="creatorBanner" class="hidden max-w-7xl mx-auto mt-2 glass-panel border-purple-500/60 rounded-2xl px-4 py-2.5 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm bg-purple-950/60">
+            <div class="flex items-center gap-2 text-purple-100 font-bold">
+                <span class="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse"></span>
+                <span>وضع المنشئ مفعّل: يمكنك الآن النقر على قصة الفيلم لتعديلها مباشرة، أو الضغط على أي صورة لتغييرها ومعاينتها فوراً!</span>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="saveAllCreatorChanges()" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-bold transition">حفظ التعديلات</button>
+                <button onclick="openHostingGuideModal()" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-white font-bold transition">دليل الصور</button>
+                <button onclick="toggleCreatorMode()" class="px-3 py-1.5 rounded-lg bg-rose-600/80 hover:bg-rose-500 text-white font-bold transition">إنهاء</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- =========================================================
+         المحتوى الرئيسي للموقع
+    ========================================================== -->
+    <main class="relative z-10 pt-28 sm:pt-36 pb-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-24 sm:space-y-32">
+
+        <!-- =====================================================
+             1. القسم الرئيسي (HERO): الفيلم + العد التنازلي + البوستر
+        ====================================================== -->
+        <section id="hero" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center min-h-[78vh]">
+            <!-- العمود الأيمن: التفاصيل والعنوان والعد التنازلي -->
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-right">
+                <!-- شارة نتفليكس + استديو يحيى بوغباش -->
+                <div class="inline-flex flex-wrap items-center justify-center lg:justify-start gap-2.5 glass-panel rounded-full px-4 py-2 text-xs sm:text-sm font-bold">
+                    <span class="flex items-center gap-1 text-netflix font-black tracking-wider">
+                        <span class="inline-block w-2 h-2 rounded-full bg-netflix animate-ping"></span>
+                        NETFLIX ORIGINAL
+                    </span>
+                    <span class="text-white/30">|</span>
+                    <span class="text-purple-200">إنتاج استديو يحيى بوغباش <span class="text-purple-400 font-semibold" dir="ltr">(yahiam7i)</span></span>
+                </div>
+
+                <!-- التاج النيون + اسم الفيلم "الرجلة" -->
+                <div class="relative inline-block">
+                    <!-- تاج نيون بنفسجي مستوحى من بوستر الفيلم -->
+                    <div class="flex justify-center lg:justify-start mb-1">
+                        <svg class="w-12 h-9 sm:w-16 sm:h-11 text-purple-400 drop-shadow-[0_0_16px_rgba(192,132,252,0.9)] animate-pulse" viewBox="0 0 64 44" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M6 36L2 12L18 22L32 4L46 22L62 12L58 36H6Z"/>
+                            <line x1="8" y1="41" x2="56" y2="41"/>
+                        </svg>
+                    </div>
+                    <h1 class="text-6xl sm:text-7xl md:text-8xl font-black tracking-tight title-gradient leading-tight py-1">
+                        الرجلة
+                    </h1>
+                </div>
+
+                <!-- الوصف القصير المقتبس من ملصق الفيلم -->
+                <p class="text-base sm:text-lg md:text-xl text-slate-300 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+                    رحلة من التحدي والإصرار في قلب المدينة، حيث تتشابك دروب الحياة وتختبر المواقف معنى <span class="text-purple-300 font-extrabold">الرجولة الحقيقي</span> في عالم العصابات والوفاء.
+                </p>
+
+                <!-- وسوم تصنيف الفيلم -->
+                <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 text-xs sm:text-sm font-bold">
+                    <span class="px-3 py-1 rounded-lg bg-netflix/20 border border-netflix/50 text-red-200">16+</span>
+                    <span class="px-3 py-1 rounded-lg glass-panel text-purple-200">أكشن • عصابات • دراما</span>
+                    <span class="px-3 py-1 rounded-lg glass-panel text-amber-300">موعد الإطلاق: 15 ديسمبر</span>
+                    <span class="px-3 py-1 rounded-lg glass-panel text-slate-300">4K HDR</span>
+                </div>
+
+                <!-- عدّاد تنازلي زجاجي لموعد الإطلاق الرسمي (15 ديسمبر) -->
+                <div class="glass-panel rounded-3xl p-4 sm:p-5 max-w-xl mx-auto lg:mx-0 border-purple-500/30">
+                    <div class="flex items-center justify-between mb-3 px-1">
+                        <span class="text-xs sm:text-sm font-extrabold text-purple-200 flex items-center gap-2">
+                            <span class="text-base">🎬</span> العدّ التنازلي للإطلاق الرسمي
+                        </span>
+                        <span class="text-xs font-bold text-netflix bg-netflix/15 px-2.5 py-0.5 rounded-full border border-netflix/30">15 ديسمبر</span>
+                    </div>
+                    <div class="grid grid-cols-4 gap-2 sm:gap-3 text-center">
+                        <div class="bg-black/45 border border-white/10 rounded-2xl py-3 px-1">
+                            <div id="cd-days" class="text-2xl sm:text-4xl font-black text-white font-bebas tracking-wider">00</div>
+                            <div class="text-[11px] sm:text-xs font-bold text-purple-300 mt-0.5">يوم</div>
+                        </div>
+                        <div class="bg-black/45 border border-white/10 rounded-2xl py-3 px-1">
+                            <div id="cd-hours" class="text-2xl sm:text-4xl font-black text-white font-bebas tracking-wider">00</div>
+                            <div class="text-[11px] sm:text-xs font-bold text-purple-300 mt-0.5">ساعة</div>
+                        </div>
+                        <div class="bg-black/45 border border-white/10 rounded-2xl py-3 px-1">
+                            <div id="cd-minutes" class="text-2xl sm:text-4xl font-black text-white font-bebas tracking-wider">00</div>
+                            <div class="text-[11px] sm:text-xs font-bold text-purple-300 mt-0.5">دقيقة</div>
+                        </div>
+                        <div class="bg-black/45 border border-purple-500/40 rounded-2xl py-3 px-1 shadow-neon-purple">
+                            <div id="cd-seconds" class="text-2xl sm:text-4xl font-black text-purple-300 font-bebas tracking-wider">00</div>
+                            <div class="text-[11px] sm:text-xs font-bold text-purple-200 mt-0.5">ثانية</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- أزرار التفاعل الرئيسية -->
+                <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3.5 pt-2">
+                    <button id="heroPreRegBtn" onclick="quickPreRegister()" class="w-full sm:w-auto px-7 py-4 rounded-2xl font-extrabold text-base sm:text-lg bg-gradient-to-l from-netflix via-rose-600 to-purple-600 hover:brightness-110 text-white shadow-neon-red transition transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2.5">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.857 17.082a23.848 23.848 0 005.454-1.31A8.967 8.967 0 0118 9.75v-.7V9A6 6 0 006 9v.75a8.967 8.967 0 01-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 01-5.714 0m5.714 0a3 3 0 11-5.714 0"/>
+                        </svg>
+                        <span id="heroPreRegText">ضغطة للتسجيل المسبق للفيلم</span>
+                    </button>
+
+                    <button onclick="openTrailerModal()" class="w-full sm:w-auto px-7 py-4 rounded-2xl font-extrabold text-base sm:text-lg glass-panel hover:bg-white/10 text-white border-purple-400/30 transition transform hover:-translate-y-0.5 active:scale-95 flex items-center justify-center gap-2.5">
+                        <span class="w-7 h-7 rounded-full bg-white text-black flex items-center justify-center pr-0.5">
+                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                        </span>
+                        <span>شاهد الإعلان 🔥</span>
+                    </button>
+                </div>
+
+                <!-- عدّاد المسجلين مسبقاً -->
+                <div class="flex items-center justify-center lg:justify-start gap-3 text-xs sm:text-sm text-slate-300 pt-1">
+                    <div class="flex -space-x-2 space-x-reverse">
+                        <span class="w-7 h-7 rounded-full bg-purple-600 border-2 border-obsidian flex items-center justify-center text-[11px] font-bold">م</span>
+                        <span class="w-7 h-7 rounded-full bg-rose-600 border-2 border-obsidian flex items-center justify-center text-[11px] font-bold">ي</span>
+                        <span class="w-7 h-7 rounded-full bg-indigo-600 border-2 border-obsidian flex items-center justify-center text-[11px] font-bold">أ</span>
+                        <span class="w-7 h-7 rounded-full bg-fuchsia-600 border-2 border-obsidian flex items-center justify-center text-[11px] font-bold">+</span>
+                    </div>
+                    <p>انضم <span id="liveRegCount" class="font-black text-purple-300 text-base">2,489</span> مشاهد في قائمة الانتظار الرسمية</p>
+                </div>
+            </div>
+
+            <!-- العمود الأيسر: إطار زجاجي فاخر لبوستر الفيلم الرسمي -->
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative w-full max-w-md group">
+                    <!-- هالة نيون خلف البوستر -->
+                    <div class="absolute -inset-2 rounded-[2rem] bg-gradient-to-tr from-netflix/40 via-purple-600/50 to-fuchsia-500/40 blur-2xl opacity-75 group-hover:opacity-100 transition duration-700"></div>
+
+                    <!-- بطاقة البوستر الزجاجية -->
+                    <div class="relative glass-panel rounded-[2rem] p-3 overflow-hidden">
+                        <div class="relative rounded-[1.5rem] overflow-hidden aspect-[4/5] bg-slate-950">
+                            <!-- صورة البوستر (تعمل تلقائياً عند وضع الملف 82743.jpg بجانب الموقع) -->
+                            <img id="img-poster"
+                                 src="82743.jpg"
+                                 alt="البوستر الرسمي لفيلم الرجلة - استديو يحيى بوغباش"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x1000/160829/e9d5ff?text=%D8%A7%D9%84%D8%B1%D8%AC%D9%84%D8%A9%0A15+%D8%AF%D9%8A%D8%B3%D9%85%D8%A8%D8%B1%0Ayahiam7i+studio';"
+                                 class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+
+                            <!-- تدرج سفلي ناعم -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-transparent to-black/30 pointer-events-none"></div>
+
+                            <!-- شارة نتفليكس العلوية -->
+                            <div class="absolute top-3.5 right-3.5 bg-black/70 backdrop-blur-md border border-red-500/40 rounded-xl px-2.5 py-1 flex items-center gap-1.5">
+                                <span class="font-bebas text-netflix text-xl leading-none">N</span>
+                                <span class="text-[11px] font-bold text-white tracking-wider">فيلم أصلي</span>
+                            </div>
+
+                            <!-- زر تغيير صورة البوستر في وضع المنشئ -->
+                            <label class="creator-upload-btn hidden absolute top-3.5 left-3.5 cursor-pointer bg-purple-600/90 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-lg flex items-center gap-1.5 transition">
+                                <span>📷 تغيير البوستر</span>
+                                <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-poster')">
+                            </label>
+
+                            <!-- شريط سفلي زجاجي فوق البوستر -->
+                            <div class="absolute bottom-3.5 inset-x-3.5 glass-panel rounded-2xl p-3 flex items-center justify-between">
+                                <div>
+                                    <p class="text-[11px] text-purple-300 font-bold">العرض العالمي الأول</p>
+                                    <p class="text-sm sm:text-base font-black text-white">15 ديسمبر • الرجلة</p>
+                                </div>
+                                <span class="text-xs font-bebas tracking-widest text-white/75 bg-white/10 px-2.5 py-1 rounded-lg" dir="ltr">yahiam7i</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             2. قسم الإعلان الرسمي للفيلم 🔥 (يظهر بشكل متطور عند التمرير)
+        ====================================================== -->
+        <section id="trailer" class="reveal space-y-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                <div>
+                    <span class="inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold text-netflix bg-netflix/15 border border-netflix/30 px-3.5 py-1.5 rounded-full mb-3">
+                        🔥 إعلان حصري عن الفيلم
+                    </span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white">
+                        الإعلان التشويقي الرسمي <span class="text-purple-400">🔥</span>
+                    </h2>
+                </div>
+                <p class="text-slate-400 text-sm sm:text-base max-w-md">
+                    لقطات حصرية من كواليس وأحداث فيلم <strong class="text-white">الرجلة</strong> من إبداع <strong class="text-purple-300">استديو يحيى بوغباش</strong>.
+                </p>
+            </div>
+
+            <!-- نافذة عرض الإعلان الزجاجية -->
+            <div class="glass-panel rounded-[2rem] p-3 sm:p-5 overflow-hidden relative group border-purple-500/25">
+                <div class="relative rounded-[1.5rem] overflow-hidden aspect-video bg-black flex items-center justify-center">
+                    <!-- خلفية مشهد العصابة الجماعي (82733.jpg) -->
+                    <img id="img-trailer"
+                         src="82733.jpg"
+                         alt="مشهد إعلان فيلم الرجلة"
+                         onerror="this.onerror=null; this.src='https://placehold.co/1280x720/120621/c084fc?text=%D8%A7%D9%84%D8%A5%D8%B9%D9%84%D8%A7%D9%86+%D8%A7%D9%84%D8%B1%D8%B3%D9%85%D9%8A+%D9%84%D9%81%D9%8A%D9%84%D9%85+%D8%A7%D9%84%D8%B1%D8%AC%D9%84%D8%A9+%F0%9F%94%A5';"
+                         class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition duration-1000">
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-purple-950/30"></div>
+
+                    <!-- زر تغيير خلفية الإعلان في وضع المنشئ -->
+                    <label class="creator-upload-btn hidden absolute top-4 left-4 z-20 cursor-pointer bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3.5 py-2 rounded-xl shadow-lg">
+                        📷 تغيير صورة الإعلان
+                        <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-trailer')">
+                    </label>
+
+                    <!-- زر التشغيل السينمائي المتوهج في المنتصف -->
+                    <button onclick="openTrailerModal()" class="relative z-10 flex flex-col items-center gap-4 group/play focus:outline-none">
+                        <div class="relative">
+                            <span class="absolute inset-0 rounded-full bg-netflix/50 animate-ping"></span>
+                            <div class="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-tr from-netflix to-purple-600 flex items-center justify-center shadow-neon-red border-2 border-white/40 group-hover/play:scale-110 transition duration-300">
+                                <svg class="w-9 h-9 sm:w-11 sm:h-11 text-white mr-1" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <span class="glass-panel px-5 py-2 rounded-full text-sm sm:text-base font-extrabold text-white tracking-wide">
+                            تشغيل العرض التشويقي • 15 ديسمبر 🔥
+                        </span>
+                    </button>
+
+                    <!-- معلومات سفلية فوق الفيديو -->
+                    <div class="absolute bottom-4 inset-x-4 sm:inset-x-8 flex flex-wrap items-center justify-between gap-2 text-xs sm:text-sm font-bold text-slate-200 z-10">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-netflix text-white px-2.5 py-0.5 rounded font-bebas tracking-widest text-sm">NETFLIX</span>
+                            <span>إنتاج استديو يحيى بوغباش</span>
+                        </div>
+                        <span class="text-purple-300" dir="ltr">yahiam7i studio • 2026</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3 بطاقات زجاجية لمميزات العمل -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <div class="reveal glass-panel glass-card-hover rounded-3xl p-6 space-y-2">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-500/20 border border-purple-400/30 flex items-center justify-center text-2xl mb-3">🎥</div>
+                    <h3 class="text-lg font-extrabold text-white">إخراج سينمائي متطور</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">رؤية بصرية حديثة وإضاءة سينمائية احترافية بإشراف كامل من <span class="text-purple-300 font-bold">استديو يحيى بوغباش</span>.</p>
+                </div>
+                <div class="reveal glass-panel glass-card-hover rounded-3xl p-6 space-y-2" style="transition-delay: 120ms;">
+                    <div class="w-12 h-12 rounded-2xl bg-netflix/20 border border-netflix/40 flex items-center justify-center text-2xl mb-3">🔥</div>
+                    <h3 class="text-lg font-extrabold text-white">أكشن ومطاردات مشوّقة</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">مواجهات قوية في قلب الشوارع، قرارات مصيرية، ولحظات تحبس الأنفاس من الدقيقة الأولى حتى النهاية.</p>
+                </div>
+                <div class="reveal glass-panel glass-card-hover rounded-3xl p-6 space-y-2" style="transition-delay: 240ms;">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-500/20 border border-amber-400/30 flex items-center justify-center text-2xl mb-3">👑</div>
+                    <h3 class="text-lg font-extrabold text-white">أخوّة العصابة والرجولة</h3>
+                    <p class="text-sm text-slate-300 leading-relaxed">قصة إنسانية ودرامية حول الوفاء، التضحية، ومعنى الوقوف صفاً واحداً أمام الخيانة والصعاب.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             3. قسم قصة الفيلم (قصة عصابة قابلة للتعديل من المنشئ)
+        ====================================================== -->
+        <section id="story" class="reveal">
+            <div class="glass-panel rounded-[2.2rem] p-6 sm:p-10 lg:p-12 border-purple-500/30 relative overflow-hidden">
+                <!-- توهج داخلي ناعم -->
+                <div class="absolute -top-24 -left-24 w-72 h-72 bg-purple-600/20 rounded-full blur-[90px] pointer-events-none"></div>
+
+                <!-- رأس القسم + أزرار تعديل القصة للمنشئ -->
+                <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-white/10">
+                    <div>
+                        <span class="text-xs sm:text-sm font-extrabold text-purple-300 tracking-wide">📜 سيناريو وأحداث العصابة</span>
+                        <h2 id="editable-story-title" class="text-3xl sm:text-4xl font-black text-white mt-1 transition">
+                            قصة فيلم الرجلة — عرش الشارع والوفاء
+                        </h2>
+                    </div>
+
+                    <!-- أدوات التحكم بالقصة (متاحة دائماً للمنشئ بنقرة واحدة) -->
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button id="editStoryBtn" onclick="toggleStoryEdit()" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-purple-600/25 hover:bg-purple-600/45 border border-purple-400/40 text-purple-100 transition flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931z"/>
+                            </svg>
+                            <span id="editStoryBtnText">تعديل القصة (للمنشئ)</span>
+                        </button>
+
+                        <button id="saveStoryBtn" onclick="saveStoryChanges()" class="hidden px-4 py-2.5 rounded-xl text-xs sm:text-sm font-extrabold bg-emerald-600 hover:bg-emerald-500 text-white transition">
+                            ✓ حفظ القصة
+                        </button>
+
+                        <button id="copyStoryBtn" onclick="copyStoryText()" class="px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-white/5 hover:bg-white/15 border border-white/10 text-slate-200 transition" title="نسخ نص القصة">
+                            نسخ
+                        </button>
+
+                        <button id="resetStoryBtn" onclick="resetStoryToDefault()" class="hidden px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-bold bg-rose-600/25 hover:bg-rose-600/45 border border-rose-400/30 text-rose-200 transition">
+                            استعادة الأصل
+                        </button>
+                    </div>
+                </div>
+
+                <!-- جسم القصة (نص قابل للتعديل + مشهد العصابة) -->
+                <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 mt-8 items-center">
+                    <div class="lg:col-span-7 space-y-5">
+                        <!-- نص القصة القابل للتعديل المباشر -->
+                        <div id="editable-story-body" class="space-y-4 text-slate-200 text-base sm:text-lg leading-loose font-medium transition">
+                            <p>
+                                في شوارع المدينة التي لا تعترف بالضعفاء، تتشكل عصابة شابة لا تحكمها الفوضى، بل يجمعها قانون واحد لا يُكسر: <strong class="text-purple-300">الرجلة والوفاء</strong>. يتصدر المشهد <strong class="text-white">مؤيد مريومة</strong> بشخصيته الكاريزمية وذكائه الحاد، محاطاً بأقرب رفاق دربه: <strong class="text-purple-200">يونس، أحمد التجاني، نذير، شكور، طها، محسن، وأسامة</strong>.
+                            </p>
+                            <p>
+                                ما بدأ كتحالف لحماية حيّهم وفرض هيبتهم، سرعان ما يتصاعد إلى صراع ناري ومطاردات خطيرة حين تظهر جهات منافسة وخيانة غير متوقعة تحاول انتزاع السيطرة وتفريق صفوف العصابة. بين المواجهات الحاسمة والقرارات الصعبة، يُختبر كل فرد منهم في لحظة الحقيقة: هل تكفي القوة للبقاء على العرش، أم أن <strong class="text-amber-300">الرجولة الحقيقية</strong> هي وحدها ما يصنع الأسطورة؟
+                            </p>
+                        </div>
+
+                        <!-- مقولة الفيلم القابلة للتعديل -->
+                        <blockquote id="editable-story-quote" class="glass-panel border-r-4 border-r-purple-500 rounded-2xl p-4 sm:p-5 text-sm sm:text-base font-bold text-purple-100 italic">
+                            "في عالم العصابات، الكل يطمع في الكرسي.. لكن القليل فقط يملك الرجلة ليحافظ على رفاقه فوقه."
+                        </blockquote>
+
+                        <p class="text-xs text-slate-400 flex items-center gap-2">
+                            <span>💡</span>
+                            <span>ملاحظة للمنشئ (يحيى بوغباش): يمكنك تعديل القصة أعلاه في أي وقت وحفظها تلقائياً على متصفحك.</span>
+                        </p>
+                    </div>
+
+                    <!-- بطاقة بصرية لملصق شاشة نتفليكس (82741.jpg) -->
+                    <div class="lg:col-span-5">
+                        <div class="relative rounded-3xl overflow-hidden border border-white/15 shadow-2xl group">
+                            <img id="img-story-scene"
+                                 src="82741.jpg"
+                                 alt="واجهة عرض فيلم الرجلة على نتفليكس"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/800x800/18092c/f3e8ff?text=NETFLIX%0A%D9%82%D8%B5%D8%A9+%D8%B9%D8%B5%D8%A7%D8%A8%D8%A9+%D8%A7%D9%84%D8%B1%D8%AC%D9%84%D8%A9';"
+                                 class="w-full h-72 sm:h-96 object-cover group-hover:scale-105 transition duration-700">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                            <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-lg">
+                                📷 تغيير الصورة
+                                <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-story-scene')">
+                            </label>
+                            <div class="absolute bottom-4 right-4 left-4 flex items-center justify-between text-xs font-bold">
+                                <span class="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 text-white">🎬 مشاهد من قلب الحدث</span>
+                                <span class="text-purple-300 font-bebas tracking-widest text-sm" dir="ltr">yahiam7i</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             4. قسم صور الشخصيات وأبطال الفيلم
+        ====================================================== -->
+        <section id="cast" class="space-y-10">
+            <!-- عنوان القسم -->
+            <div class="reveal text-center max-w-2xl mx-auto space-y-3">
+                <span class="inline-block text-xs sm:text-sm font-extrabold text-purple-300 bg-purple-500/15 border border-purple-400/30 px-4 py-1.5 rounded-full">
+                    👑 طاقم التمثيل وأبطال العصابة
+                </span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white">
+                    شخصيات فيلم <span class="title-gradient">الرجلة</span>
+                </h2>
+                <p class="text-slate-400 text-sm sm:text-base">
+                    تعرّف على نجوم العمل وأفراد العصابة بقيادة الشخصية الرئيسية <strong class="text-purple-300">مؤيد مريومة</strong>.
+                </p>
+            </div>
+
+            <!-- بطاقة مميزة للشخصية الرئيسية: مؤيد مريومة -->
+            <div class="reveal glass-panel rounded-[2.2rem] p-5 sm:p-8 border-amber-400/35 relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-72 h-72 bg-amber-500/15 rounded-full blur-[90px] pointer-events-none"></div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-6 sm:gap-8 items-center relative z-10">
+                    <div class="md:col-span-5 lg:col-span-4">
+                        <div class="relative rounded-3xl overflow-hidden aspect-[4/5] border-2 border-amber-400/50 shadow-[0_0_35px_rgba(251,191,36,0.2)] group">
+                            <img id="img-cast-moayad"
+                                 src="82657.jpg"
+                                 alt="مؤيد مريومة - الشخصية الرئيسية"
+                                 onerror="this.onerror=null; this.src='https://placehold.co/600x750/1e0a36/fbbf24?text=%D9%85%D8%A4%D9%8A%D8%AF+%D9%85%D8%B1%D9%8A%D9%88%D9%85%D8%A9%0A%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9+%D8%A7%D9%84%D8%B1%D8%A6%D9%8A%D8%B3%D9%8A%D8%A9';"
+                                 class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-700">
+                            <div class="absolute top-3 right-3 bg-gradient-to-l from-amber-500 to-yellow-400 text-black text-xs font-black px-3 py-1 rounded-full shadow-lg flex items-center gap-1">
+                                <span>👑</span>
+                                <span>الشخصية الرئيسية</span>
+                            </div>
+                            <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 hover:bg-purple-500 text-white text-xs font-bold px-3 py-1.5 rounded-xl shadow-lg">
+                                📷 صورة
+                                <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-moayad')">
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="md:col-span-7 lg:col-span-8 space-y-4 text-center md:text-right">
+                        <div class="inline-flex items-center gap-2 text-amber-300 font-extrabold text-sm">
+                            <span>⭐ بطل الفيلم الأول</span>
+                        </div>
+                        <h3 class="text-3xl sm:text-5xl font-black text-white">مؤيد مريومة</h3>
+                        <p class="text-purple-300 font-bold text-base sm:text-lg">قائد العصابة وصاحب الكرسي — الشخصية المحورية في الأحداث</p>
+                        <p class="editable-role text-slate-300 text-sm sm:text-base leading-relaxed max-w-2xl">
+                            شخصية قيادية تجمع بين الهدوء والهيبة والذكاء في أصعب المواقف. يحمل على عاتقه مسؤولية رفاقه وحماية إرث العصابة، ليُثبت للجميع أن الزعامة لا تُؤخذ بالصوت العالي بل بالمواقف والرجولة.
+                        </p>
+                        <div class="flex flex-wrap justify-center md:justify-start gap-2.5 pt-2 text-xs font-bold">
+                            <span class="px-3.5 py-1.5 rounded-xl bg-amber-500/15 border border-amber-400/30 text-amber-200">القيادة والهيبة</span>
+                            <span class="px-3.5 py-1.5 rounded-xl bg-purple-500/15 border border-purple-400/30 text-purple-200">الوفاء للعصابة</span>
+                            <span class="px-3.5 py-1.5 rounded-xl bg-white/5 border border-white/10 text-slate-200">بطولة مطلقة</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- شبكة بقية الشخصيات (يونس - أحمد التجاني - نذير - شكور - طها - محسن - أسامة - والمزيد) -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- 1. يونس -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col">
+                    <div class="relative aspect-[4/4.3] bg-slate-900 overflow-hidden group">
+                        <img id="img-cast-younes"
+                             src="82711.png"
+                             alt="يونس"
+                             onerror="this.onerror=null; this.src='https://placehold.co/500x540/1b092b/f43f5e?text=%D9%8A%D9%88%D9%86%D8%B3';"
+                             class="w-full h-full object-cover object-top group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[11px] font-bold bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-rose-300">عضو رئيسي</span>
+                        <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                            📷 تغيير
+                            <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-younes')">
+                        </label>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="text-xl font-black text-white">يونس</h3>
+                            <p class="text-xs font-bold text-purple-400 mt-0.5">اليد اليمنى وصاحب المواقف الحاسمة</p>
+                        </div>
+                        <p class="editable-role text-xs sm:text-sm text-slate-300 leading-relaxed">سند العصابة في المواجهات المباشرة، لا يتراجع أبداً حين يشتد الخطر.</p>
+                    </div>
+                </article>
+
+                <!-- 2. أحمد التجاني -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col" style="transition-delay: 80ms;">
+                    <div class="relative aspect-[4/4.3] bg-slate-900 overflow-hidden group">
+                        <img id="img-cast-ahmed"
+                             src="82725.jpg"
+                             alt="أحمد التجاني"
+                             onerror="this.onerror=null; this.src='https://placehold.co/500x540/1b092b/c084fc?text=%D8%A3%D8%AD%D9%85%D8%AF+%D8%A7%D9%84%D8%AA%D8%AC%D8%A7%D9%86%D9%8A';"
+                             class="w-full h-full object-cover object-top group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[11px] font-bold bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-purple-300">العقل المدبّر</span>
+                        <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                            📷 تغيير
+                            <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-ahmed')">
+                        </label>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="text-xl font-black text-white">أحمد التجاني</h3>
+                            <p class="text-xs font-bold text-purple-400 mt-0.5">الواجهة الأنيقة والمفاوض الذكي</p>
+                        </div>
+                        <p class="editable-role text-xs sm:text-sm text-slate-300 leading-relaxed">يدير الصفقات الكبرى بهدوء وثقة، ويجيد قراءة تحركات الخصوم قبل حدوثها.</p>
+                    </div>
+                </article>
+
+                <!-- 3. نذير -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col" style="transition-delay: 160ms;">
+                    <div class="relative aspect-[4/4.3] bg-slate-900 overflow-hidden group">
+                        <img id="img-cast-nadhir"
+                             src="82734.jpg"
+                             alt="نذير"
+                             onerror="this.onerror=null; this.src='https://placehold.co/500x540/1b092b/a855f7?text=%D9%86%D8%B0%D9%8A%D8%B1';"
+                             class="w-full h-full object-cover object-top group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[11px] font-bold bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-sky-300">خبير التخطيط</span>
+                        <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                            📷 تغيير
+                            <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-nadhir')">
+                        </label>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="text-xl font-black text-white">نذير</h3>
+                            <p class="text-xs font-bold text-purple-400 mt-0.5">صاحب الخطط الاستراتيجية والمعلومات</p>
+                        </div>
+                        <p class="editable-role text-xs sm:text-sm text-slate-300 leading-relaxed">العين الساهرة خلف الكواليس، كل خطوة ناجحة للعصابة تبدأ من تخطيطه الدقيق.</p>
+                    </div>
+                </article>
+
+                <!-- 4. شكور -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col" style="transition-delay: 240ms;">
+                    <div class="relative aspect-[4/4.3] bg-slate-900 overflow-hidden group">
+                        <img id="img-cast-chakour"
+                             src="82703.jpg"
+                             alt="شكور"
+                             onerror="this.onerror=null; this.src='https://placehold.co/500x540/1b092b/e879f9?text=%D8%B4%D9%83%D9%88%D8%B1';"
+                             class="w-full h-full object-cover object-top group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[11px] font-bold bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-fuchsia-300">نجم في العصابة</span>
+                        <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                            📷 تغيير
+                            <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-chakour')">
+                        </label>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="text-xl font-black text-white">شكور</h3>
+                            <p class="text-xs font-bold text-purple-400 mt-0.5">الجرأة والمغامرة في قلب الشارع</p>
+                        </div>
+                        <p class="editable-role text-xs sm:text-sm text-slate-300 leading-relaxed">يمتلك روحاً قتالية وحضوراً قوياً يغيّر مجرى الأحداث في اللحظات غير المتوقعة.</p>
+                    </div>
+                </article>
+
+                <!-- 5. طها -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col">
+                    <div class="relative aspect-[4/4.3] bg-slate-900 overflow-hidden group">
+                        <img id="img-cast-taha"
+                             src="taha.jpg"
+                             alt="طها"
+                             onerror="this.onerror=null; this.src='https://placehold.co/500x540/180929/facc15?text=%D8%B7%D9%87%D8%A7';"
+                             class="w-full h-full object-cover object-top group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[11px] font-bold bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-amber-300">سرعة وحسم</span>
+                        <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                            📷 تغيير
+                            <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-taha')">
+                        </label>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="text-xl font-black text-white">طها</h3>
+                            <p class="text-xs font-bold text-purple-400 mt-0.5">متخصص المهام السريعة والمطاردات</p>
+                        </div>
+                        <p class="editable-role text-xs sm:text-sm text-slate-300 leading-relaxed">يعرف كل زقاق ومخرج في المدينة، ويظهر دائماً في الثانية الأخيرة لإنقاذ الموقف.</p>
+                    </div>
+                </article>
+
+                <!-- 6. محسن -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col" style="transition-delay: 80ms;">
+                    <div class="relative aspect-[4/4.3] bg-slate-900 overflow-hidden group">
+                        <img id="img-cast-mohsen"
+                             src="mohsen.jpg"
+                             alt="محسن"
+                             onerror="this.onerror=null; this.src='https://placehold.co/500x540/180929/38bdf8?text=%D9%85%D8%AD%D8%B3%D9%86';"
+                             class="w-full h-full object-cover object-top group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[11px] font-bold bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-cyan-300">حامي الظهر</span>
+                        <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                            📷 تغيير
+                            <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-mohsen')">
+                        </label>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="text-xl font-black text-white">محسن</h3>
+                            <p class="text-xs font-bold text-purple-400 mt-0.5">السند الوفي وقت الأزمات</p>
+                        </div>
+                        <p class="editable-role text-xs sm:text-sm text-slate-300 leading-relaxed">ثابت كالجبل أمام التهديدات، يضع مصلحة إخوته فوق كل اعتبار.</p>
+                    </div>
+                </article>
+
+                <!-- 7. أسامة -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col" style="transition-delay: 160ms;">
+                    <div class="relative aspect-[4/4.3] bg-slate-900 overflow-hidden group">
+                        <img id="img-cast-oussama"
+                             src="oussama.jpg"
+                             alt="أسامة"
+                             onerror="this.onerror=null; this.src='https://placehold.co/500x540/180929/fb7185?text=%D8%A3%D8%B3%D8%A7%D9%85%D8%A9';"
+                             class="w-full h-full object-cover object-top group-hover:scale-110 transition duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-t from-obsidian via-transparent to-transparent"></div>
+                        <span class="absolute top-3 right-3 text-[11px] font-bold bg-black/60 backdrop-blur-md border border-white/15 px-2.5 py-1 rounded-full text-pink-300">مفاجأة الأحداث</span>
+                        <label class="creator-upload-btn hidden absolute top-3 left-3 cursor-pointer bg-purple-600 text-white text-[11px] font-bold px-2.5 py-1 rounded-lg">
+                            📷 تغيير
+                            <input type="file" accept="image/*" class="hidden" onchange="previewCustomImage(event, 'img-cast-oussama')">
+                        </label>
+                    </div>
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-2">
+                        <div>
+                            <h3 class="text-xl font-black text-white">أسامة</h3>
+                            <p class="text-xs font-bold text-purple-400 mt-0.5">الورقة الرابحة في اللحظات الحرجة</p>
+                        </div>
+                        <p class="editable-role text-xs sm:text-sm text-slate-300 leading-relaxed">شاب طموح وجريء يمتلك حماساً مشتعلاً ويقلب موازين الصراع بذكائه.</p>
+                    </div>
+                </article>
+
+                <!-- 8. والمزيد... -->
+                <article class="reveal glass-panel glass-card-hover rounded-3xl overflow-hidden flex flex-col justify-center items-center text-center p-6 border-dashed border-purple-400/40 bg-gradient-to-b from-purple-950/35 to-black/50" style="transition-delay: 240ms;">
+                    <div class="w-20 h-20 rounded-full bg-purple-500/20 border border-purple-400/40 flex items-center justify-center text-4xl font-black text-purple-300 mb-4 shadow-neon-purple">
+                        +
+                    </div>
+                    <h3 class="text-2xl font-black text-white">والمزيد...</h3>
+                    <p class="text-xs font-bold text-purple-300 mt-1">ضيوف شرف وشخصيات سرّية</p>
+                    <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mt-3">
+                        مفاجآت وأسماء إضافية سيتم الكشف عنها حصرياً عند إطلاق الفيلم يوم <strong class="text-white">15 ديسمبر</strong>!
+                    </p>
+                    <button onclick="openPreRegisterModal()" class="mt-5 px-4 py-2 rounded-xl text-xs font-extrabold bg-white/10 hover:bg-purple-600 text-white transition">
+                        كن أول من يكتشفهم 🔥
+                    </button>
+                </article>
+            </div>
+        </section>
+
+        <!-- =====================================================
+             5. قسم التسجيل المسبق للفيلم (ضغطة زر + تذكرة VIP رقمية)
+        ====================================================== -->
+        <section id="preregister" class="reveal">
+            <div class="relative glass-panel rounded-[2.5rem] p-7 sm:p-12 overflow-hidden border-netflix/40 text-center">
+                <!-- توهجات خلفية مزدوجة -->
+                <div class="absolute -top-24 right-1/4 w-80 h-80 bg-netflix/20 rounded-full blur-[110px] pointer-events-none"></div>
+                <div class="absolute -bottom-24 left-1/4 w-80 h-80 bg-purple-600/25 rounded-full blur-[110px] pointer-events-none"></div>
+
+                <div class="relative z-10 max-w-2xl mx-auto space-y-6">
+                    <div class="inline-flex items-center gap-2 bg-black/50 border border-white/15 px-4 py-1.5 rounded-full text-xs sm:text-sm font-extrabold text-amber-300">
+                        <span>🎟️</span>
+                        <span>التسجيل المسبق للعرض الأول — مجاني تماماً</span>
+                    </div>
+
+                    <h2 class="text-3xl sm:text-5xl font-black text-white leading-tight">
+                        احجز مقعدك الرقمي في عرض <span class="title-gradient">الرجلة</span>
+                    </h2>
+
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        بضغطة زر واحدة، سجّل مسبقاً لتصلك إشعارات لحظة إطلاق الفيلم يوم <strong>15 ديسمبر</strong> واحصل فوراً على <strong>بطاقة VIP رقمية</strong> تحمل اسمك من استديو يحيى بوغباش.
+                    </p>
+
+                    <!-- زر الضغطة السريعة أو فتح نموذج البطاقة -->
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-2">
+                        <button id="mainPreRegBtn" onclick="quickPreRegister()" class="w-full sm:w-auto px-9 py-4 rounded-2xl text-lg font-black bg-gradient-to-l from-netflix via-rose-600 to-purple-600 hover:brightness-110 text-white shadow-neon-red transition transform hover:scale-[1.03] active:scale-95 flex items-center justify-center gap-3">
+                            <span>⚡ اضغط هنا للتسجيل المسبق فوراً</span>
+                        </button>
+
+                        <button onclick="openPreRegisterModal()" class="w-full sm:w-auto px-7 py-4 rounded-2xl text-base font-extrabold glass-panel hover:bg-white/10 text-purple-200 border-purple-400/30 transition">
+                            إصدار تذكرة VIP باسمك 🎟️
+                        </button>
+                    </div>
+
+                    <!-- شارة تأكيد حالة التسجيل -->
+                    <div id="preRegStatusBadge" class="hidden inline-flex items-center gap-2 px-5 py-2.5 rounded-2xl bg-emerald-500/15 border border-emerald-400/40 text-emerald-200 text-sm font-bold">
+                        <span>✅</span>
+                        <span id="preRegStatusText">تم تسجيلك مسبقاً بنجاح! نراك يوم 15 ديسمبر.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =========================================================
+         التذييل (Footer) مع علامة مائية ضخمة وباهتة yahiam7i studio
+    ========================================================== -->
+    <footer class="relative z-10 mt-16 border-t border-white/10 overflow-hidden bg-black/50 backdrop-blur-xl">
+        <!-- النص الضخم الباهت في أسفل الموقع كما طلب المستخدم -->
+        <div class="pointer-events-none select-none text-center pt-10 pb-2 overflow-hidden">
+            <p class="font-bebas text-[14vw] sm:text-[10vw] leading-none tracking-[0.14em] text-white/[0.045] whitespace-nowrap" dir="ltr">
+                YAHIAM7I STUDIO
+            </p>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-10 -mt-4 sm:-mt-8 relative z-10">
+            <div class="glass-panel rounded-3xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-right">
+                <div class="space-y-2">
+                    <div class="flex items-center justify-center md:justify-start gap-3">
+                        <span class="font-bebas text-2xl text-netflix tracking-widest">NETFLIX</span>
+                        <span class="text-white/30">×</span>
+                        <span class="font-extrabold text-lg text-white">استديو يحيى بوغباش</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-slate-400">
+                        الموقع الرسمي لإطلاق فيلم <strong class="text-purple-300">الرجلة</strong> — جميع الحقوق محفوظة © 2026
+                    </p>
+                </div>
+
+                <div class="flex flex-col items-center md:items-end gap-2">
+                    <span class="font-bebas tracking-[0.25em] text-xl sm:text-2xl text-white/30" dir="ltr">yahiam7i studio</span>
+                    <button onclick="openHostingGuideModal()" class="text-xs font-bold text-purple-300 hover:text-purple-200 underline underline-offset-4">
+                        كيف أضيف صوري الأصلية وأرفع الموقع؟
+                    </button>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- =========================================================
+         النوافذ المنبثقة (Modals) + إشعارات Toast (بدون alert نهائياً)
+    ========================================================== -->
+
+    <!-- 1. نافذة التسجيل المسبق وتوليد تذكرة VIP -->
+    <div id="preRegModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel rounded-[2rem] max-w-md w-full p-6 sm:p-8 relative border-purple-500/40 animate-[fadeIn_0.25s_ease]">
+            <button onclick="closePreRegisterModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold transition">✕</button>
+
+            <!-- نموذج التسجيل -->
+            <div id="preRegFormBox" class="space-y-5">
+                <div class="text-center space-y-1">
+                    <span class="text-3xl">🎟️</span>
+                    <h3 class="text-2xl font-black text-white">التسجيل المسبق لفيلم الرجلة</h3>
+                    <p class="text-xs sm:text-sm text-slate-300">أدخل اسمك لتحصل على تذكرة العرض الأول الرسمية</p>
+                </div>
+
+                <form onsubmit="submitPreRegisterForm(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-purple-200 mb-1.5">الاسم الكامل أو اللقب</label>
+                        <input id="regNameInput" type="text" required placeholder="مثال: يحيى، أمين..." class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/15 focus:border-purple-400 focus:outline-none text-white text-sm">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-purple-200 mb-1.5">البريد الإلكتروني أو حساب إنستغرام (اختياري)</label>
+                        <input id="regContactInput" type="text" placeholder="@username أو email@example.com" class="w-full px-4 py-3 rounded-xl bg-black/50 border border-white/15 focus:border-purple-400 focus:outline-none text-white text-sm">
+                    </div>
+                    <button type="submit" class="w-full py-3.5 rounded-xl font-extrabold text-base bg-gradient-to-l from-netflix to-purple-600 hover:brightness-110 text-white shadow-neon-red transition">
+                        تأكيد التسجيل وإصدار التذكرة ⚡
+                    </button>
+                </form>
+            </div>
+
+            <!-- بطاقة VIP بعد التسجيل -->
+            <div id="vipTicketBox" class="hidden space-y-5 text-center">
+                <div class="inline-block px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/40 text-emerald-300 text-xs font-bold">
+                    ✓ تم تأكيد تسجيلك المسبق بنجاح!
+                </div>
+
+                <!-- تصميم التذكرة الرقمية -->
+                <div class="relative rounded-3xl p-5 bg-gradient-to-br from-purple-950/90 via-obsidian to-red-950/80 border border-purple-400/50 shadow-neon-purple text-right space-y-4">
+                    <div class="flex items-center justify-between border-b border-white/15 pb-3">
+                        <span class="font-bebas text-2xl text-netflix tracking-widest">NETFLIX</span>
+                        <span class="text-xs font-black text-amber-300 bg-amber-400/15 px-2.5 py-1 rounded-lg">VIP PASS</span>
+                    </div>
+                    <div>
+                        <p class="text-[11px] text-purple-300 font-bold">العرض الرسمي للفيلم</p>
+                        <h4 class="text-3xl font-black title-gradient">الرجلة</h4>
+                    </div>
+                    <div class="grid grid-cols-2 gap-3 text-xs pt-1">
+                        <div class="bg-black/40 rounded-xl p-2.5 border border-white/10">
+                            <span class="text-slate-400 block">اسم الضيف</span>
+                            <strong id="ticketGuestName" class="text-white text-sm">مشاهد VIP</strong>
+                        </div>
+                        <div class="bg-black/40 rounded-xl p-2.5 border border-white/10">
+                            <span class="text-slate-400 block">تاريخ الإطلاق</span>
+                            <strong class="text-amber-300 text-sm">15 ديسمبر</strong>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between pt-2 border-t border-dashed border-white/20 text-[11px] text-slate-300">
+                        <span id="ticketCode" class="font-mono text-purple-300">#RJL-2026-0001</span>
+                        <span class="font-bebas tracking-widest text-sm text-white/70" dir="ltr">yahiam7i studio</span>
+                    </div>
+                </div>
+
+                <button onclick="closePreRegisterModal()" class="w-full py-3 rounded-xl font-bold bg-white/10 hover:bg-white/20 text-white transition">
+                    رائع، إغلاق
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. نافذة عرض الإعلان التشويقي السينمائي -->
+    <div id="trailerModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/90 backdrop-blur-lg">
+        <div class="glass-panel rounded-[2rem] max-w-3xl w-full p-5 sm:p-6 relative border-purple-500/40 space-y-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <span class="font-bebas text-xl text-netflix tracking-widest">NETFLIX</span>
+                    <span class="text-sm sm:text-base font-extrabold text-white">الإعلان التشويقي — فيلم الرجلة 🔥</span>
+                </div>
+                <button onclick="closeTrailerModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-rose-600 text-white flex items-center justify-center font-bold transition">✕</button>
+            </div>
+
+            <!-- شاشة الإعلان التشويقي التفاعلية -->
+            <div id="trailerStage" class="relative aspect-video rounded-2xl overflow-hidden bg-black border border-white/10 flex flex-col items-center justify-center text-center p-6">
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.28),transparent_70%)] animate-pulse"></div>
+                <div id="teaserTextContainer" class="relative z-10 space-y-3 max-w-lg">
+                    <p class="text-xs sm:text-sm font-bebas tracking-[0.35em] text-purple-300 uppercase" dir="ltr">YAHIAM7I STUDIO PRESENTS</p>
+                    <h4 id="teaserHeadline" class="text-3xl sm:text-5xl font-black title-gradient">الرجلة</h4>
+                    <p id="teaserSubtitle" class="text-sm sm:text-lg text-slate-200 font-bold">في شوارع لا ترحم.. الأخوّة هي القوة الوحيدة</p>
+                    <div class="pt-3">
+                        <span class="inline-block px-4 py-1.5 rounded-full bg-netflix text-white text-xs sm:text-sm font-extrabold">موعد الإطلاق الرسمي: 15 ديسمبر 🔥</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- خيار للمنشئ لربط فيديو YouTube للإعلان لاحقاً -->
+            <div class="flex flex-col sm:flex-row items-center gap-2 pt-1">
+                <input id="customYoutubeInput" type="url" placeholder="للمنشئ: الصق رابط إعلان يوتيوب هنا لتشغيله مباشرة (اختياري)..." class="w-full px-3.5 py-2.5 rounded-xl bg-black/50 border border-white/15 text-xs sm:text-sm text-white focus:border-purple-400 focus:outline-none">
+                <button onclick="loadCustomTrailer()" class="w-full sm:w-auto whitespace-nowrap px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white text-xs sm:text-sm font-bold transition">
+                    تشغيل الرابط
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. نافذة دليل المنشئ لتشغيل الصور الأصلية عند الرفع -->
+    <div id="hostingGuideModal" class="fixed inset-0 z-[100] hidden items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-panel rounded-[2rem] max-w-lg w-full p-6 sm:p-7 relative border-purple-500/40 space-y-4">
+            <button onclick="closeHostingGuideModal()" class="absolute top-4 left-4 w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center font-bold">✕</button>
+            <h3 class="text-xl font-black text-white">📁 دليل المنشئ (استديو يحيى بوغباش)</h3>
+            <p class="text-sm text-slate-300 leading-relaxed">
+                لظهور صورك الحقيقية تلقائياً عند رفع الموقع على <strong>Netlify Drop</strong> أو <strong>GitHub Pages</strong>:
+            </p>
+            <ul class="text-xs sm:text-sm text-slate-200 space-y-2 bg-black/40 p-4 rounded-2xl border border-white/10 leading-relaxed">
+                <li>• ضع ملف الموقع <code class="text-purple-300 font-bold">index.html</code> في مجلد واحد مع صورك بنفس أسمائها:</li>
+                <li dir="ltr" class="text-purple-300 font-mono text-xs">82743.jpg (البوستر) • 82741.jpg (القصة) • 82733.jpg (الإعلان)</li>
+                <li dir="ltr" class="text-purple-300 font-mono text-xs">82657.jpg (مؤيد) • 82711.png (يونس) • 82725.jpg (أحمد) • 82734.jpg (نذير) • 82703.jpg (شكور)</li>
+                <li>• وأضف صور: <code class="text-amber-300">taha.jpg</code>، <code class="text-amber-300">mohsen.jpg</code>، <code class="text-amber-300">oussama.jpg</code> لبقية الشخصيات.</li>
+                <li>• كما يمكنك تجربة الصور فوراً الآن بالضغط على زر <strong>"وضع المنشئ"</strong> في الأعلى ثم اختيار الصورة من جهازك!</li>
+            </ul>
+            <button onclick="closeHostingGuideModal()" class="w-full py-3 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-bold transition">فهمت، شكراً!</button>
+        </div>
+    </div>
+
+    <!-- حاوية إشعارات Toast العصرية (بديل alert) -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 left-5 sm:left-auto z-[120] flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- =========================================================
+         الأكواد البرمجية التفاعلية (JavaScript)
+    ========================================================== -->
+    <script>
+        /* =========================================================
+           1. العدّ التنازلي التلقائي لموعد الإطلاق (15 ديسمبر)
+        ========================================================== */
+        function initCountdown() {
+            const now = new Date();
+            let targetYear = now.getFullYear();
+            // 15 ديسمبر الساعة 20:00 مساءً (الشهر 11 لأن الأشهر تبدأ من 0)
+            let launchDate = new Date(targetYear, 11, 15, 20, 0, 0);
+
+            // إذا مرّ 15 ديسمبر لهذا العام، يضبط العدّاد تلقائياً للعام القادم
+            if (now > launchDate) {
+                launchDate = new Date(targetYear + 1, 11, 15, 20, 0, 0);
+            }
+
+            function updateTimer() {
+                const current = new Date().getTime();
+                const diff = launchDate.getTime() - current;
+
+                if (diff <= 0) {
+                    document.getElementById('cd-days').textContent = '00';
+                    document.getElementById('cd-hours').textContent = '00';
+                    document.getElementById('cd-minutes').textContent = '00';
+                    document.getElementById('cd-seconds').textContent = '00';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').textContent = String(days).padStart(2, '0');
+                document.getElementById('cd-hours').textContent = String(hours).padStart(2, '0');
+                document.getElementById('cd-minutes').textContent = String(minutes).padStart(2, '0');
+                document.getElementById('cd-seconds').textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        /* =========================================================
+           2. نظام الظهور المتطور عند التمرير (IntersectionObserver)
+        ========================================================== */
+        function initScrollReveal() {
+            const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach((entry) => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('active');
+                        }
+                    });
+                }, {
+                    threshold: 0.12,
+                    rootMargin: '0px 0px -40px 0px'
+                });
+
+                revealElements.forEach((el) => observer.observe(el));
+            } else {
+                // إظهار فوري للمتصفحات القديمة جداً
+                revealElements.forEach((el) => el.classList.add('active'));
+            }
+        }
+
+        /* =========================================================
+           3. نظام الإشعارات الأنيق (Toast Notifications)
+        ========================================================== */
+        function showToast(message, type = 'purple') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+
+            const colors = {
+                purple: 'border-purple-400/60 bg-purple-950/90 text-purple-100',
+                success: 'border-emerald-400/60 bg-emerald-950/90 text-emerald-100',
+                red: 'border-red-400/60 bg-red-950/90 text-red-100'
+            };
+
+            toast.className = `pointer-events-auto glass-panel border ${colors[type] || colors.purple} px-5 py-3.5 rounded-2xl text-sm font-bold shadow-2xl transform translate-y-4 opacity-0 transition-all duration-300 flex items-center gap-2.5`;
+            toast.innerHTML = `<span>${message}</span>`;
+            container.appendChild(toast);
+
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => toast.remove(), 350);
+            }, 3400);
+        }
+
+        /* =========================================================
+           4. وضع المنشئ وتعديل قصة العصابة + معاينة الصور
+        ========================================================== */
+        let isCreatorMode = false;
+        let isStoryEditing = false;
+
+        // حفظ النسخة الأصلية للقصة لإمكانية الاستعادة
+        const defaultStoryData = {
+            title: '',
+            body: '',
+            quote: ''
+        };
+
+        function loadSavedStory() {
+            const titleEl = document.getElementById('editable-story-title');
+            const bodyEl = document.getElementById('editable-story-body');
+            const quoteEl = document.getElementById('editable-story-quote');
+
+            defaultStoryData.title = titleEl.innerHTML;
+            defaultStoryData.body = bodyEl.innerHTML;
+            defaultStoryData.quote = quoteEl.innerHTML;
+
+            try {
+                const saved = localStorage.getItem('rajla_story_v1');
+                if (saved) {
+                    const parsed = JSON.parse(saved);
+                    if (parsed.title) titleEl.innerHTML = parsed.title;
+                    if (parsed.body) bodyEl.innerHTML = parsed.body;
+                    if (parsed.quote) quoteEl.innerHTML = parsed.quote;
+                }
+            } catch (err) {
+                console.warn('تعذر قراءة التخزين المحلي للقصة:', err);
+            }
+        }
+
+        function setStoryEditableState(enable) {
+            isStoryEditing = enable;
+            const elements = [
+                document.getElementById('editable-story-title'),
+                document.getElementById('editable-story-body'),
+                document.getElementById('editable-story-quote')
+            ];
+
+            elements.forEach((el) => {
+                el.contentEditable = enable ? 'true' : 'false';
+                el.classList.toggle('editable-active', enable);
+            });
+
+            document.getElementById('editStoryBtnText').textContent = enable ? 'جاري التعديل...' : 'تعديل القصة (للمنشئ)';
+            document.getElementById('saveStoryBtn').classList.toggle('hidden', !enable);
+            document.getElementById('resetStoryBtn').classList.toggle('hidden', !enable);
+        }
+
+        function toggleStoryEdit() {
+            setStoryEditableState(!isStoryEditing);
+            if (isStoryEditing) {
+                document.getElementById('editable-story-body').focus();
+                showToast('✍️ يمكنك الآن تعديل عنوان وقصة العصابة مباشرة ثم الضغط على "حفظ القصة".');
+            }
+        }
+
+        function saveStoryChanges() {
+            try {
+                const payload = {
+                    title: document.getElementById('editable-story-title').innerHTML,
+                    body: document.getElementById('editable-story-body').innerHTML,
+                    quote: document.getElementById('editable-story-quote').innerHTML
+                };
+                localStorage.setItem('rajla_story_v1', JSON.stringify(payload));
+                setStoryEditableState(false);
+                showToast('✅ تم حفظ تعديلات قصة فيلم "الرجلة" بنجاح!', 'success');
+            } catch (err) {
+                showToast('⚠️ تم تحديث النص على الصفحة (التخزين المحلي غير متاح حالياً).', 'purple');
+                setStoryEditableState(false);
+            }
+        }
+
+        function resetStoryToDefault() {
+            document.getElementById('editable-story-title').innerHTML = defaultStoryData.title;
+            document.getElementById('editable-story-body').innerHTML = defaultStoryData.body;
+            document.getElementById('editable-story-quote').innerHTML = defaultStoryData.quote;
+            try {
+                localStorage.removeItem('rajla_story_v1');
+            } catch (err) {}
+            setStoryEditableState(false);
+            showToast('🔄 تمت استعادة القصة الأصلية بنجاح.');
+        }
+
+        function copyStoryText() {
+            try {
+                const fullText =
+                    document.getElementById('editable-story-title').innerText + '\n\n' +
+                    document.getElementById('editable-story-body').innerText + '\n\n' +
+                    document.getElementById('editable-story-quote').innerText;
+
+                const textarea = document.createElement('textarea');
+                textarea.value = fullText;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+
+                showToast('📋 تم نسخ نص القصة إلى الحافظة!', 'success');
+            } catch (err) {
+                showToast('تعذر النسخ التلقائي، يمكنك تحديد النص ونسخه يدوياً.', 'red');
+            }
+        }
+
+        // تبديل وضع المنشئ الشامل (تعديل القصة + وصف الشخصيات + أزرار رفع الصور)
+        function toggleCreatorMode() {
+            isCreatorMode = !isCreatorMode;
+            const banner = document.getElementById('creatorBanner');
+            const uploadBtns = document.querySelectorAll('.creator-upload-btn');
+            const roleTexts = document.querySelectorAll('.editable-role');
+            const modeLabel = document.getElementById('creatorModeLabel');
+
+            banner.classList.toggle('hidden', !isCreatorMode);
+            uploadBtns.forEach((btn) => btn.classList.toggle('hidden', !isCreatorMode));
+            roleTexts.forEach((el) => {
+                el.contentEditable = isCreatorMode ? 'true' : 'false';
+                el.classList.toggle('editable-active', isCreatorMode);
+            });
+
+            setStoryEditableState(isCreatorMode);
+            modeLabel.textContent = isCreatorMode ? 'إغلاق التعديل' : 'وضع المنشئ';
+
+            if (isCreatorMode) {
+                showToast('🛠️ تم تفعيل وضع المنشئ: عدّل القصة والصور وأوصاف الشخصيات بحرية!', 'purple');
+            } else {
+                showToast('✨ تم الخروج من وضع المنشئ والعودة لوضع العرض الرسمي.');
+            }
+        }
+
+        function saveAllCreatorChanges() {
+            saveStoryChanges();
+            if (isCreatorMode) {
+                toggleCreatorMode();
+            }
+        }
+
+        // معاينة أي صورة يختارها المنشئ من جهازه مباشرة على الموقع
+        function previewCustomImage(event, imgElementId) {
+            try {
+                const file = event.target.files[0];
+                if (!file) return;
+                const objectUrl = URL.createObjectURL(file);
+                const imgEl = document.getElementById(imgElementId);
+                if (imgEl) {
+                    imgEl.src = objectUrl;
+                    showToast('🖼️ تم تحديث الصورة للمعاينة بنجاح!', 'success');
+                }
+            } catch (err) {
+                showToast('حدث خطأ أثناء تحميل الصورة، جرب صورة أخرى.', 'red');
+            }
+        }
+
+        /* =========================================================
+           5. نظام التسجيل المسبق للفيلم + عدّاد المعجبين + تذكرة VIP
+        ========================================================== */
+        let registeredCount = 2489;
+        let isPreRegistered = false;
+
+        function loadPreRegState() {
+            try {
+                const savedCount = localStorage.getItem('rajla_reg_count');
+                const savedUser = localStorage.getItem('rajla_reg_user');
+
+                if (savedCount) registeredCount = parseInt(savedCount, 10) || 2489;
+                if (savedUser) {
+                    isPreRegistered = true;
+                    updatePreRegUI(savedUser);
+                }
+                document.getElementById('liveRegCount').textContent = registeredCount.toLocaleString('en-US');
+            } catch (err) {}
+        }
+
+        function updatePreRegUI(guestName) {
+            const heroBtnText = document.getElementById('heroPreRegText');
+            const mainBtn = document.getElementById('mainPreRegBtn');
+            const statusBadge = document.getElementById('preRegStatusBadge');
+            const statusText = document.getElementById('preRegStatusText');
+
+            if (heroBtnText) heroBtnText.textContent = '✓ تم تسجيلك مسبقاً للفيلم';
+            if (mainBtn) mainBtn.innerHTML = '<span>✓ أنت مسجّل مسبقاً في العرض الأول</span>';
+            if (statusBadge && statusText) {
+                statusBadge.classList.remove('hidden');
+                statusText.textContent = `أهلاً ${guestName}! تم تأكيد تسجيلك المسبق لعرض فيلم الرجلة يوم 15 ديسمبر.`;
+            }
+            document.getElementById('liveRegCount').textContent = registeredCount.toLocaleString('en-US');
+        }
+
+        // ضغطة سريعة فورية للتسجيل المسبق
+        function quickPreRegister() {
+            if (!isPreRegistered) {
+                isPreRegistered = true;
+                registeredCount += 1;
+                try {
+                    localStorage.setItem('rajla_reg_count', String(registeredCount));
+                    localStorage.setItem('rajla_reg_user', 'مشاهد VIP');
+                } catch (err) {}
+                updatePreRegUI('مشاهد VIP');
+                showToast('🔥 تم تسجيلك مسبقاً لفيلم "الرجلة" بنجاح! ننتظرك يوم 15 ديسمبر.', 'success');
+            } else {
+                showToast('🎟️ أنت مسجّل مسبقاً بالفعل! يمكنك إصدار تذكرتك باسمك الآن.', 'purple');
+                openPreRegisterModal();
+            }
+        }
+
+        function openPreRegisterModal() {
+            const modal = document.getElementById('preRegModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            document.getElementById('preRegFormBox').classList.remove('hidden');
+            document.getElementById('vipTicketBox').classList.add('hidden');
+        }
+
+        function closePreRegisterModal() {
+            const modal = document.getElementById('preRegModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        function submitPreRegisterForm(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('regNameInput').value.trim() || 'مشاهد VIP';
+
+            if (!isPreRegistered) {
+                isPreRegistered = true;
+                registeredCount += 1;
+            }
+
+            try {
+                localStorage.setItem('rajla_reg_count', String(registeredCount));
+                localStorage.setItem('rajla_reg_user', nameInput);
+            } catch (err) {}
+
+            updatePreRegUI(nameInput);
+
+            // تعبئة بيانات التذكرة الرقمية
+            const randomTicketNum = String(Math.floor(1000 + Math.random() * 9000));
+            document.getElementById('ticketGuestName').textContent = nameInput;
+            document.getElementById('ticketCode').textContent = `#RJL-2026-${randomTicketNum}`;
+
+            document.getElementById('preRegFormBox').classList.add('hidden');
+            document.getElementById('vipTicketBox').classList.remove('hidden');
+
+            showToast(`🎟️ مبروك يا ${nameInput}! تم إصدار تذكرة VIP الخاصة بك.`, 'success');
+        }
+
+        /* =========================================================
+           6. نافذة الإعلان التشويقي السينمائي + ربط يوتيوب
+        ========================================================== */
+        let teaserInterval = null;
+        const teaserSlides = [
+            { title: 'استديو يحيى بوغباش يقدم', sub: 'عملاً سينمائياً أصلياً بالتعاون مع NETFLIX' },
+            { title: 'مؤيد مريومة ورفاقه', sub: 'يونس • أحمد التجاني • نذير • شكور • طها • محسن • أسامة' },
+            { title: 'الرجلة 🔥', sub: 'الإطلاق الرسمي يوم 15 ديسمبر — استعدوا للعرض!' }
+        ];
+
+        function openTrailerModal() {
+            const modal = document.getElementById('trailerModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+
+            let idx = 0;
+            const headEl = document.getElementById('teaserHeadline');
+            const subEl = document.getElementById('teaserSubtitle');
+
+            if (headEl && subEl) {
+                clearInterval(teaserInterval);
+                teaserInterval = setInterval(() => {
+                    idx = (idx + 1) % teaserSlides.length;
+                    headEl.textContent = teaserSlides[idx].title;
+                    subEl.textContent = teaserSlides[idx].sub;
+                }, 2800);
+            }
+        }
+
+        function closeTrailerModal() {
+            const modal = document.getElementById('trailerModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            clearInterval(teaserInterval);
+        }
+
+        function loadCustomTrailer() {
+            const url = document.getElementById('customYoutubeInput').value.trim();
+            if (!url) {
+                showToast('الرجاء لصق رابط فيديو يوتيوب أولاً.', 'red');
+                return;
+            }
+
+            // استخراج معرّف فيديو يوتيوب
+            const match = url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/|youtube\.com\/embed\/)([^&\n?#]+)/);
+            if (match && match[1]) {
+                clearInterval(teaserInterval);
+                const stage = document.getElementById('trailerStage');
+                stage.innerHTML = `<iframe class="w-full h-full rounded-xl" src="https://www.youtube.com/embed/${match[1]}?autoplay=1" title="إعلان فيلم الرجلة" frameborder="0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>`;
+                showToast('🎬 تم تشغيل إعلان يوتيوب بنجاح!', 'success');
+            } else {
+                showToast('⚠️ تأكد من لصق رابط يوتيوب صحيح (youtube.com أو youtu.be).', 'red');
+            }
+        }
+
+        /* =========================================================
+           7. نافذة دليل الرفع والصور للمنشئ
+        ========================================================== */
+        function openHostingGuideModal() {
+            const modal = document.getElementById('hostingGuideModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeHostingGuideModal() {
+            const modal = document.getElementById('hostingGuideModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+
+        /* =========================================================
+           التشغيل الأولي عند تحميل الصفحة
+        ========================================================== */
+        window.addEventListener('DOMContentLoaded', () => {
+            initCountdown();
+            initScrollReveal();
+            loadSavedStory();
+            loadPreRegState();
+        });
+    </script>
+</body>
+</html>
